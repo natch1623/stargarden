@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+*{
+    font-family: 'Poppins',cursive;
+}
+body{
+    color: azure;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    margin: 0;
+}
+
+/* Botones */
+.botones{
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 80px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+.botones a{
+    display: inline-block;
+    background-color: #0a2be9;
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 80px;
+    text-decoration: none;
+}
+.botones:not(:has(a)){
+  background-color: #0a2be9;
+  color: #fff;
+}
+.botones:focus, .botones a:focus{
+    outline: none;
+    background-color: rgb(50, 194, 194);
+}
+
+/* Título animado: MY LITTLE STAR */
+.greetings{
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+}
+.greetings > span{
+    animation: glow 3.9s ease-in-out infinite;
+}
+@keyframes glow{
+    0%, 100%{
+        color: #fff;
+        text-shadow: 0 0 12px #d6d639, 0 0 50px #d6c639, 0 0 100px #d6cb39;
+    }
+    10%, 90%{
+        color: #111;
+        text-shadow: none;
+    }
+}
+/* MY LITTLE STAR → 14 caracteres (incluyendo espacios) */
+.greetings > span:nth-child(1){ animation-delay: 0s; }   
+.greetings > span:nth-child(2){ animation-delay: 0.3s; } 
+.greetings > span:nth-child(3){ animation-delay: 0.6s; } 
+.greetings > span:nth-child(4){ animation-delay: 0.9s; } 
+.greetings > span:nth-child(5){ animation-delay: 1.2s; } 
+.greetings > span:nth-child(6){ animation-delay: 1.5s; } 
+.greetings > span:nth-child(7){ animation-delay: 1.8s; } 
+.greetings > span:nth-child(8){ animation-delay: 2.1s; } 
+.greetings > span:nth-child(9){ animation-delay: 2.4s; } 
+.greetings > span:nth-child(10){ animation-delay: 2.7s; }
+.greetings > span:nth-child(11){ animation-delay: 3s; }  
+.greetings > span:nth-child(12){ animation-delay: 3.3s; }
+.greetings > span:nth-child(13){ animation-delay: 3.6s; }
+.greetings > span:nth-child(14){ animation-delay: 3.9s; }
+
+.description{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.button a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #111;
+}
+
+/* Fondo estrellado */
+.sky{
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: radial-gradient(ellipse at top, #071226 0%, #000 60%);
+  overflow: hidden;
+  pointer-events: none;
+}
+.sky{
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: radial-gradient(ellipse at top, #071226 0%, #000 60%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Estrellas con forma de estrella */
+.star{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 
+    68% 57%, 79% 91%, 50% 70%, 
+    21% 91%, 32% 57%, 2% 35%, 
+    39% 35%
+  );
+  transform: translate(-50%, -50%) scale(0.5);
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.15; transform: translate(-50%,-50%) scale(0.3); filter: blur(0.3px); }
+  50%  { opacity: 1;    transform: translate(-50%,-50%) scale(1.2); filter: blur(0); }
+  100% { opacity: 0.2;  transform: translate(-50%,-50%) scale(0.5); filter: blur(0.2px); }
+}
+
+/* --- SOL: imagen arriba, rayos detrás y centrados --- */
+.sun{
+  --sun-size: 88vmin;
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--sun-size) * -0.5);
+  width: var(--sun-size);
+  height: var(--sun-size);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  z-index: -2;
+  pointer-events: none;
+  background: none;
+  overflow: visible;
+}
+
+/* imagen del sol: encima de los rayos */
+.sun__img{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92%;
+  height: 92%;
+  max-width: var(--sun-size);
+  max-height: var(--sun-size);
+  transform: translate(-50%,-50%) rotate(0deg);
+  transform-origin: 50% 50%;
+  animation: sun-spin-img 54s linear infinite;
+  z-index: -1; /* encima de los rayos */
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* rayos: varias capas, todos centrados exactamente en el centro del sol */
+.sun__rays{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--sun-size) * 2);
+  height: calc(var(--sun-size) * 2);
+  transform: translate(-50%,-50%);
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.95;
+  animation: sun-spin-rays 54s linear infinite;
+  filter: blur(3px) saturate(1.05);
+
+  background:
+    conic-gradient(from 0deg at 50% 50%, rgba(255,240,160,0.18) 0deg 6deg, rgba(255,240,160,0) 6deg 12deg),
+    repeating-conic-gradient(from 3deg at 50% 50%, rgba(255,200,80,0.10) 0deg 8deg, transparent 8deg 16deg),
+    radial-gradient(circle at 50% 50%, rgba(255,220,120,0.06) 0%, rgba(0,0,0,0) 55%);
+
+  -webkit-mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 28%,
+    rgba(0,0,0,0.6) 45%,
+    rgba(0,0,0,0) 70%);
+  mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 28%,
+    rgba(0,0,0,0.6) 45%,
+    rgba(0,0,0,0) 70%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+
+/* halo interior */
+.sun__rays::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,245,200,0.18), rgba(255,200,60,0.06) 60%, transparent 80%);
+  filter: blur(8px);
+  opacity: 0.85;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* keyframes */
+@keyframes sun-spin-img { to { transform: translate(-50%,-50%) rotate(-360deg); } }
+@keyframes sun-spin-rays { to { transform: translate(-50%,-50%) rotate(-360deg); } }
+@keyframes sun-spin-spikes { to { transform: translate(-50%,-50%) rotate(-360deg); } }
+
+/* responsive */
+@media (max-width:600px){
+  /* make page flow on small screens */
+  body{ height: auto; min-height: 100vh; padding: 2.4rem 0; }
+
+  /* reduce and wrap the big title so it doesn't cause horizontal scroll */
+  .greetings{
+    font-size: 3rem; /* smaller, readable on phones */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.1rem;
+    line-height: 1;
+    margin: 0.4rem 0 0.6rem 0;
+    padding: 0 1rem;
+    text-align: center;
+    word-break: break-word;
+  }
+  .greetings > span{ display: inline-block; margin: 0 0.12rem; }
+
+  .description{
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .button{ margin-bottom: 0.6rem; }
+  .botones a{ padding: 10px 14px; font-size: 1rem; border-radius: 999px; }
+
+  /* keep the decorative sun but push it further down so it doesn't overlap content */
+  .sun{ --sun-size: 100vmin; bottom: calc(var(--sun-size) * -0.6); }
+  .sun__img{ animation-duration: 24.3s; width: 95%; height: 95%; }
+  .sun__rays{ animation-duration: 54s; width: calc(var(--sun-size) * 1.9); height: calc(var(--sun-size) * 1.9); }
+  .sun__rays::before{ width: calc(var(--sun-size) * 2.1); height: calc(var(--sun-size) * 2.1); animation-duration: 40s; }
+
+  /* reduce star size slightly to avoid visual clutter */
+  .star{ width: 7px; height: 7px; }
+
+  /* ensure the fixed background doesn't introduce horizontal scroll */
+  .sky{ left: 0; right: 0; }
+}
+
+/* click-generated stars */
+.click-star{
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff7e6 40%, rgba(255,255,255,0.6) 70%, rgba(255,255,255,0) 100%);
+  transform: translate(-50%,-50%);
+  animation: click-burst var(--dur,0.9s) ease-out forwards;
+}
+
+@keyframes click-burst{
+  0%{ opacity: 1; transform: translate(-50%,-50%) scale(0.3); filter: blur(0.2px); }
+  70%{ opacity: 1; transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, -80px))) scale(1.1); }
+  100%{ opacity: 0; transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, -120px))) scale(0.6); }
+}
